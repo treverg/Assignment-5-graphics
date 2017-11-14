@@ -2,9 +2,9 @@
 //  patches.js - Indices into patch control vertices 
 //
 //    Each patch is a 4x4 Bezier patch, and there are 32 patches in the
-//      Utah teapot.
+//    Utah teapot.
 //
-// lol
+
 var numPatches = 32;
 
 var indices = new Array(numPatches);
