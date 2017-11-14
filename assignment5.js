@@ -4,7 +4,7 @@
 // those vertices exists in separate files that are loaded in your
 // HTML file.
 
-var numDivisions = 20;		// Points computed along each cubic bezier
+var numDivisions = 20;		// Points computed along each cubic bezier ok
 
 var points = [];		// Array of points sent to the vertex buffer
 var normals = [];
