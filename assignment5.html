@@ -35,7 +35,7 @@ uniform vec4 specularProduct;
 uniform float shininess;
 varying vec3 N, L, E;
 varying vec4 vertices;
-uniform int flag2;
+uniform int flag2, ggw;
 
 void main()
 {    
@@ -57,28 +57,30 @@ void main()
 
     vec4 red = vec4(1.0, 0.0, 0.0, 1.0);
     vec4 green = vec4(0.0, 1.0, 0.0, 1.0);
-    vec4 pink = vec4(1.0, 0.0, 0.92, 1.0);
-    vec4 orange = vec4(1.0, 0.88, 0.0, 1.0);
-    vec4 blue = vec4(0.0, 0.0, 1.0, 1.0);
-    vec4 white = vec4(1.0, 1.0, 1.0, 1.0);
+    vec4 blue = vec4(0.0, 0.9, 1.0, 1.0);
+    vec4 yellow = vec4(1.0, 1.0, 0.0, 1.0);
 
-    if(flag2 == 1){
-        float a = floor(vertices.x);
-        float b = floor(vertices.y);
-        float c = floor(vertices.z);
-        if (mod(a+b+c, 2.0) > 0.5) {
-            fColor = green;
-        }else {
-            fColor = red;
-        }
+    if(ggw == 10) {
+        
     }else {
-        float a = floor(vertices.x * 10.0);
-        float b = floor(vertices.y * 10.0);
-        float c = floor(vertices.z * 10.0);
-        if (mod(a+b+c, 2.0) > 0.5) {
-            fColor = white;
+        if(flag2 == 1){
+            float a = floor(vertices.x);
+            float b = floor(vertices.y);
+            float c = floor(vertices.z);
+            if (mod(a+b+c, 2.0) > 0.5) {
+                fColor = fColor * green;
+            }else {
+                fColor = fColor * red;
+            }
         }else {
-            fColor = blue;
+            float a = floor(vertices.x * 10.0);
+            float b = floor(vertices.y * 10.0);
+            float c = floor(vertices.z * 10.0);
+            if (mod(a+b+c, 2.0) > 0.5) {
+                fColor = fColor * yellow;
+            }else {
+                fColor = fColor * blue;
+            }
         }
     }
 
@@ -141,7 +143,7 @@ void main()
     <div id="info">
         <h1>CS371 Assignment 5: A Totally Titillating Tremendous Teapot</h1>
         <h3>Colin Loomans and Trever Gannon</h3>
-        <h5>GGW Points: </h5>
+        <h5>GGW Points: We implemented another procedural pattern that can be toggled on or off by pressing 'G'</h5>
 
         <canvas id="gl-canvas" width="700" height="700">
             Oops ... your browser doesn't support the HTML5 canvas element
