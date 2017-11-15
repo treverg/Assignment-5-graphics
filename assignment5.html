@@ -11,7 +11,6 @@ varying vec4 vertices;
 uniform mat4 modelViewMatrix;
 uniform mat4 projectionMatrix;
 uniform vec4 lightPosition;
-uniform int flag2;
 
 void main()
 {
@@ -34,7 +33,6 @@ uniform vec4 ambientProduct;
 uniform vec4 diffuseProduct;
 uniform vec4 specularProduct;
 uniform float shininess;
-uniform int flag2;
 varying vec3 N, L, E;
 varying vec4 vertices;
 
@@ -58,24 +56,17 @@ void main()
 
     vec4 red = vec4(1.0, 0.0, 0.0, 1.0);
     vec4 green = vec4(0.0, 1.0, 0.0, 1.0);
-    if(flag2 == 1)
-    {
+    vec4 pink = vec4(1.0,0.0,.92,1);
+    vec4 orange = vec4(1.0,0.88,0,1);
+
     float a = floor(vertices.x);
     float b = floor(vertices.y);
     float c = floor(vertices.z);
+    if (mod(a+b+c, 2.0) > 0.5) {
+        fColor = green;
+    }else {
+        fColor = red;
     }
-    else
-    {
-    float a = floor(vertices.x * 10);
-    float b = floor(vertices.y * 10);
-    float c = floor(vertices.z * 10);
-    }
-
-        if (mod(a+b+c, 2.0) > 0.5) {
-            fColor = green;
-        }else {
-            fColor = red;
-        }
 
     gl_FragColor = fColor;
 }

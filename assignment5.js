@@ -24,7 +24,7 @@ var zAxis = 2;
 var program;
 
 var flag = true;		// flag to toggle rotation
-var flag2 = true;
+var flag2 = true;       // flag to toggle between procedural textures
 
 // Return an array with the Bernstein polys of degree three evaluated
 // at u
@@ -265,12 +265,12 @@ var render = function () {
 
     gl.drawArrays(gl.TRIANGLES, 0, points.length);
 
-    //if (flag2) {
-    //    gl.uniform1i(gl.getUniformLocation(program, "flag2"), 1);
-    //}
-    //else {
-    //    gl.uniform1i(gl.getUniformLocation(program, "flag2"), 0);
-    //}
+    /*if (flag2) {
+        gl.uniform1i(gl.getUniformLocation(program, "flag2"), 1);
+    }
+    else {
+        gl.uniform1i(gl.getUniformLocation(program, "flag2"), 0);
+    }*/
 
     requestAnimFrame(render);
 }
