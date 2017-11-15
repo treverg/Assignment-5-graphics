@@ -265,12 +265,12 @@ var render = function () {
 
     gl.drawArrays(gl.TRIANGLES, 0, points.length);
 
-    /*if (flag2) {
+    if (flag2) {
         gl.uniform1i(gl.getUniformLocation(program, "flag2"), 1);
     }
     else {
-        gl.uniform1i(gl.getUniformLocation(program, "flag2"), 0);
-    }*/
+        gl.uniform1i(gl.getUniformLocation(program, "flag2"), 2);
+    }
 
     requestAnimFrame(render);
 }
