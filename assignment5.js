@@ -24,6 +24,7 @@ var zAxis = 2;
 var program;
 
 var flag = true;		// flag to toggle rotation
+var flag2 = true;
 
 // Return an array with the Bernstein polys of degree three evaluated
 // at u
@@ -195,6 +196,8 @@ onload = function init() {
     document.getElementById("ButtonY").onclick = function () { axis = yAxis; };
     document.getElementById("ButtonZ").onclick = function () { axis = zAxis; };
     document.getElementById("ButtonT").onclick = function () { flag = !flag; };
+    document.getElementById("ButtonS").onclick = function () { flag2 = !flag2; };
+
 
     program = initShaders(gl, "vertex-shader", "fragment-shader");
     gl.useProgram(program);
@@ -261,6 +264,13 @@ var render = function () {
     gl.uniformMatrix4fv(gl.getUniformLocation(program, "modelViewMatrix"), false, flatten(modelView));
 
     gl.drawArrays(gl.TRIANGLES, 0, points.length);
+
+    //if (flag2) {
+    //    gl.uniform1i(gl.getUniformLocation(program, "flag2"), 1);
+    //}
+    //else {
+    //    gl.uniform1i(gl.getUniformLocation(program, "flag2"), 0);
+    //}
 
     requestAnimFrame(render);
 }

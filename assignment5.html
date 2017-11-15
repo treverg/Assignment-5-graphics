@@ -6,10 +6,12 @@
 
 attribute vec4 vPosition;
 attribute vec4 vNormal;
-varying vec3 N, L, E, vertices;
+varying vec3 N, L, E;
+varying vec4 vertices;
 uniform mat4 modelViewMatrix;
 uniform mat4 projectionMatrix;
 uniform vec4 lightPosition;
+uniform int flag2;
 
 void main()
 {
@@ -19,6 +21,7 @@ void main()
     E = normalize(pos);
     N = normalize( (modelViewMatrix*vNormal).xyz );
     gl_Position = projectionMatrix * modelViewMatrix * vPosition;
+    vertices = vPosition;
     
 }
 </script>
@@ -31,7 +34,9 @@ uniform vec4 ambientProduct;
 uniform vec4 diffuseProduct;
 uniform vec4 specularProduct;
 uniform float shininess;
-varying vec3 N, L, E, vertices;
+uniform int flag2;
+varying vec3 N, L, E;
+varying vec4 vertices;
 
 void main()
 {    
@@ -53,15 +58,24 @@ void main()
 
     vec4 red = vec4(1.0, 0.0, 0.0, 1.0);
     vec4 green = vec4(0.0, 1.0, 0.0, 1.0);
-
-    float a = floor(vertices.x * 10.0);
-    float b = floor(vertices.y * 10.0);
-    float c = floor(vertices.z * 10.0);
-    if (mod(a+b+c, 2.0) > 0.5) {
-        fColor = green;
-    }else {
-        fColor = red;
+    if(flag2 == 1)
+    {
+    float a = floor(vertices.x);
+    float b = floor(vertices.y);
+    float c = floor(vertices.z);
     }
+    else
+    {
+    float a = floor(vertices.x * 10);
+    float b = floor(vertices.y * 10);
+    float c = floor(vertices.z * 10);
+    }
+
+        if (mod(a+b+c, 2.0) > 0.5) {
+            fColor = green;
+        }else {
+            fColor = red;
+        }
 
     gl_FragColor = fColor;
 }
