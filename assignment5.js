@@ -198,6 +198,7 @@ onload = function init() {
     document.getElementById("ButtonZ").onclick = function () { axis = zAxis; };
     document.getElementById("ButtonT").onclick = function () { flag = !flag; };
     document.getElementById("ButtonS").onclick = function () { flag2 = !flag2; };
+    document.getElementById("ButtonQ").onclick = function () { ggw = !ggw; };
 
 
     program = initShaders(gl, "vertex-shader", "fragment-shader");
@@ -266,33 +267,20 @@ var render = function () {
 
     gl.drawArrays(gl.TRIANGLES, 0, points.length);
 
+
+    if (flag2) {
+        gl.uniform1i(gl.getUniformLocation(program, "flag2"), 1);
+    }
+    else {
+        gl.uniform1i(gl.getUniformLocation(program, "flag2"), 2);
+    }
+
     if (ggw) {
-        gl.uniform1i(gl.getUniformLocation(program, "ggw"), 10);
-    } else {
-        if (flag2) {
-            gl.uniform1i(gl.getUniformLocation(program, "flag2"), 1);
-        }
-        else {
-            gl.uniform1i(gl.getUniformLocation(program, "flag2"), 2);
-        }
+        gl.uniform1i(gl.getUniformLocation(program, "ggw"), 1);
+    }
+    else {
+        gl.uniform1i(gl.getUniformLocation(program, "ggw"), 2);
     }
 
     requestAnimFrame(render);
-}
-
-// Key listener
-window.onkeydown = function (event) {
-    var key = String.fromCharCode(event.keyCode);
-    // For letters, the upper-case version of the letter is always
-    // returned because the shift-key is regarded as a separate key in
-    // itself.  Hence upper-case and lower-case can't be distinguished.
-    switch (key) {
-        case 'G':
-            if (ggw) {
-                ggw = false;
-            } else {
-                ggw = true;
-            }
-            break;
-    }
 }
